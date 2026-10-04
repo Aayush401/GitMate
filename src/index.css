@@ -1,0 +1,289 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* --background: 220 20% 97%;
+    --foreground: 210 40% 15%;
+
+    --card: 220 18% 97%;
+    --card-foreground: 210 40% 15%;
+
+    --popover: 220 18% 97%;
+    --popover-foreground: 210 40% 15%;
+
+    --primary: 160 100% 50%;
+    --primary-foreground: 220 20% 4%;
+
+    --secondary: 160 100% 85%;
+    --secondary-foreground: 210 40% 15%;
+
+    --muted: 160 100% 85%;
+    --muted-foreground: 215 20% 55%;
+
+    --accent: 280 100% 65%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 15% 18%;
+    --input: 220 15% 14%;
+    --ring: 160 100% 50%; */
+
+    /* Base */
+    --background: 220 20% 97%;
+    --foreground: 220 25% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 25% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 25% 12%;
+
+    /* Main brand */
+    --primary: 160 100% 42%;
+    --primary-foreground: 220 25% 8%;
+
+    /* Neutral secondary */
+    --secondary: 220 15% 92%;
+    --secondary-foreground: 220 25% 20%;
+
+    /* Neutral muted UI */
+    --muted: 220 15% 92%;
+    --muted-foreground: 220 10% 45%;
+
+    /* Purple accent */
+    --accent: 270 25% 42%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Status */
+    --destructive: 0 72% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 15% 85%;
+    --input: 220 15% 88%;
+    --ring: 160 100% 42%;
+
+    --radius: 0.75rem;
+
+    /* Custom GitMate tokens */
+    --glow-primary: 160 100% 50%;
+    --glow-accent: 280 100% 25%;
+    --surface: 220 18% 6%;
+    --surface-elevated: 220 18% 10%;
+    --surface-hover: 220 15% 12%;
+    --gradient-start: 160 100% 50%;
+    --gradient-end: 180 100% 45%;
+    --text-primary: 210 40% 98%;
+    --text-secondary: 215 20% 65%;
+    --text-muted: 215 15% 45%;
+    --success: 142 76% 45%;
+    --warning: 45 100% 55%;
+    --info: 200 100% 55%;
+  }
+
+  .dark {
+    --background: 220 20% 4%;
+    --foreground: 210 40% 98%;
+    --card: 220 18% 8%;
+    --card-foreground: 210 40% 98%;
+    --popover: 220 18% 8%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 160 100% 50%;
+    --primary-foreground: 220 20% 4%;
+    --secondary: 220 15% 14%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 220 15% 18%;
+    --muted-foreground: 215 20% 55%;
+    --accent: 280 100% 25%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 220 15% 18%;
+    --input: 220 15% 14%;
+    --ring: 160 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+/* 
+  html {
+    @apply dark;
+  } */
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-semibold tracking-tight;
+  }
+
+  code, pre {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-card/80 backdrop-blur-xl border border-border/50 rounded-xl;
+  }
+
+  .glow-primary {
+    box-shadow: 0 0 40px -10px hsl(var(--primary) / 0.5);
+  }
+
+  .glow-accent {
+    box-shadow: 0 0 40px -10px hsl(var(--accent) / 0.5);
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
+  }
+
+  .gradient-border {
+    @apply relative;
+  }
+
+  .gradient-border::before {
+    content: '';
+    @apply absolute inset-0 rounded-xl p-[1px];
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: xor;
+    pointer-events: none;
+  }
+
+  .stat-card {
+    @apply bg-card border border-border/50 rounded-xl p-6 transition-all duration-300 hover:border-primary/30 hover:glow-primary;
+  }
+
+  .nav-link {
+    @apply text-muted-foreground hover:text-foreground transition-colors duration-200;
+  }
+
+  .nav-link-active {
+    @apply text-primary;
+  }
+
+  .chip {
+    @apply px-3 py-1 rounded-full text-sm font-medium bg-secondary text-secondary-foreground border border-border/50;
+  }
+
+  .chip-primary {
+    @apply bg-primary/10 text-primary border-primary/30;
+  }
+
+  .chip-accent {
+    @apply bg-accent/10 text-accent border-accent/30;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 20px -10px hsl(var(--primary) / 0.5);
+  }
+  to {
+    box-shadow: 0 0 40px -10px hsl(var(--primary) / 0.8);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-background;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-muted rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-muted-foreground/50;
+}
+
+
+.info {
+    @apply border-orange-400 border-2 bg-orange-400/30 backdrop-blur-xl
+}
+
+.info [data-icon] {
+    @apply text-orange-600
+}
+
+.info-close {
+    @apply bg-orange-400
+}
+
+.error {
+    @apply border-red-500 border-2 bg-red-400/40 backdrop-blur-xl
+}
+
+.error [data-icon] {
+    @apply text-red-600
+}
+
+.success {
+    @apply border-green-400 border-2 bg-green-400/30  backdrop-blur-xl
+}
+
+.success [data-icon] {
+    @apply text-green-600
+}
+
+.loading {
+    @apply border border-border bg-card/95 backdrop-blur-xl;
+}
+
+.loading [data-icon] {
+    @apply text-primary;
+}
